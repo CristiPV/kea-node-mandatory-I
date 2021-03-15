@@ -3,7 +3,6 @@
     "start-dev": "cross-env PORT=3000 nodemon src/app.js"
   },
   "dependencies": {
-    "bootstrap": "^5.0.0-beta2",
     "express": "^4.17.1"
   },
   "devDependencies": {
