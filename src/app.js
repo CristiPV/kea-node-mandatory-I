@@ -14,6 +14,10 @@ app.get( "/home", ( req, res ) => {
     res.redirect( "/" );
 } );
 
+app.get( "/javascript", ( req, res ) => {
+    res.sendFile( __dirname + "/public/javascript/javascript.html" );
+} );
+
 app.listen( PORT, ( error ) => {
     if ( error ) {
         console.log( error );
