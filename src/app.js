@@ -8,6 +8,10 @@ app.get( "/", ( req, res ) => {
     res.sendFile( __dirname + "/public/index.html" );
 } );
 
+app.get( "/home", ( req, res ) => {
+    res.redirect( "/" );
+} );
+
 app.listen( PORT, ( error ) => {
     if ( error ) {
         console.log( error );
