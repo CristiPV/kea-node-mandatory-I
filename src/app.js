@@ -18,6 +18,10 @@ app.get( "/javascript", ( req, res ) => {
     res.sendFile( __dirname + "/public/javascript/javascript.html" );
 } );
 
+app.get( "/npm", ( req, res ) => {
+    res.sendFile( __dirname + "/public/npm/npm.html" );
+} );
+
 app.listen( PORT, ( error ) => {
     if ( error ) {
         console.log( error );
