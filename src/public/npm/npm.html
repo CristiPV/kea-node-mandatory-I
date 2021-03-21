@@ -47,7 +47,106 @@
     <main class="container-fluid mt-3">
         <article class="container border border-2">
             <div class="mt-2">
-                
+                <p class="fs-2 text fst-italic fw-bolder">NPM</p> <hr>
+                <div>
+                    <p class="fs-3 fw-light">What is <i>NPM</i> ?</p>
+                    <b>NPM</b> is a package/module manager for <b>Node.js</b>.
+                    All the packages that can be installed through <b>NPM</b> can be
+                    found on their <a href="https://www.npmjs.com/">website</a>.
+
+                    <p class="fs-3 fw-light"> <br> Installing packages with <i>NPM</i> </p>
+                    First, we need to make sure there is a <code>package.json</code> file in the 
+                    folder we want to install a new package. If there isn't any, we can make one 
+                    and write <code>{ }</code> to indicate it is an empty <code>json</code> object. <br>
+
+                    We can install new packages with <b>NPM</b> by using the command: <kbd>npm install &lt;package
+                    name&gt;</kbd> or simply <kbd>npm i &lt;package name&gt;</kbd> <br>
+                    Example: 
+                    <pre class="border rounded"> 
+                        <code>
+                            npm install express;
+                        </code>
+                    </pre>
+
+                    By using the <code>-g</code> option, we can install packages globally:
+                    <pre class="border rounded">
+                        <code>
+                            npm install -g nodemon;
+                        </code>
+                    </pre>
+
+                    By using the <code>-D</code> option, we can install the desired package as a 
+                    development dependency:
+                    <pre class="border rounded">
+                        <code>
+                            npm install -D cross-env;
+                        </code>
+                    </pre>
+
+                    We are using <code>nodemon</code> for automatically restarting the application
+                    every time a file has changed, <code>express</code> for making the <i>API</i> and
+                    <code>cross-env</code> for being able to set environment variables in a way that 
+                    is independent of the developer's OS. <br>
+                    <br>
+                    After installing the desired dependencies, the <code>package.json</code> should look like this:
+                    <pre class="border rounded">
+                        <code>
+                            {
+                                "dependencies": {
+                                  "express": "^4.17.1"
+                                },
+                                "devDependencies": {
+                                  "cross-env": "^7.0.3"
+                                }
+                            }
+                        </code>
+                    </pre>
+
+                    <p class="fs-3 fw-light">Using a package</code></p>
+
+                    Using any of the installed packages is as easy as writing <kbd>require
+                    ( "&lt;package name&gt;" );</kbd> in your <code>node js</code> file. <br>
+                    Example: <kbd>const express = require( "express" );</kbd>
+
+                    <p class="fs-3 fw-light"> <br> What is <code>package.json</code></p>
+                    
+                    The <code>package.json</code> file contains the names and the versions of all 
+                    of the project's dependencies that are available through <b>NPM</b>. <br>
+                    <br>
+                    After installing a new dependency, it will also be written in the 
+                    <code>package.json</code> file. <br>
+                    <br>
+                    By using the command <kbd>npm install</kbd> ( or <kbd>npm i</kbd> ) from the folder
+                    that contains the <code>package.json</code>, we will tell <b>NPM</b> to install all
+                    the dependencies mentioned in the file along with their own dependencies. <br>
+                    By default, they will be installed under <kbd>./node_modules/</kbd>.
+                    
+                    <p class="fs-3 fw-light"> <br> Creating scripts with <i>NPM</i> </code></p>
+
+                    Within <code>package.json</code> we can also define <code>scripts</code> which
+                    can later be used through <kbd>npm run</kbd>. 
+                    Example:
+                    <pre class="border rounded">
+                        <code>
+                            {
+                                "scripts": {
+                                  "start-dev": "cross-env PORT=3000 nodemon src/app.js"
+                                },
+                                "dependencies": {
+                                  "express": "^4.17.1"
+                                },
+                                "devDependencies": {
+                                  "cross-env": "^7.0.3"
+                                }
+                            } 
+                        </code>
+                    </pre>
+                    We can now run the <code>start-dev</code> script like so: <kbd>npm run start-dev</kbd>. <br>
+                    It will create an <code>environment variable</code> with the port number by using
+                    <code>cross-env</code> and execute the command <kbd>nodemon src/app.js</kbd> to run
+                    my application.
+
+                </div>
             </div>
         </article>
     </main>
