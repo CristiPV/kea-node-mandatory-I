@@ -47,9 +47,9 @@
     <main class="container-fluid mt-3">
         <article class="container border border-2">
             <div class="mt-2">
-                <p class=".fs-3 text fst-italic fw-bolder">Javascript</p><hr>
+                <p class="fs-2 text fst-italic fw-bolder">Javascript</p><hr>
                 <div>  
-                    <p class=".fs-2 fw-light">Declaring a variable in <i>Javascript</i></p>
+                    <p class="fs-3 fw-light">Declaring a variable in <i>Javascript</i></p>
                     In Javascript, we typically declare variables with either <code>const</code>, 
                     for maintaining constant values, or <code>let</code>, for being able to change the 
                     value of the variable.
@@ -57,7 +57,7 @@
                     Both of these declarations are <code>block scoped</code>, meaning they are only
                     accessible within the block they are declared in. 
     
-                    <p class=".fs-2 fw-light"> <br> Printing out to the console</p>
+                    <p class="fs-3 fw-light"> <br> Printing out to the console</p>
                     In order to print things to the console, we use <code>console.log()</code>. <br>
                     For example:
                     <pre class="border rounded">
@@ -67,7 +67,7 @@
                         </code>
                     </pre>
     
-                    <p class=".fs-2 fw-light">Data types</p> 
+                    <p class="fs-3 fw-light">Data types</p> 
                     To begin with, data types in Javascript are dynamic, meaning a variable 
                     can be used to hold many different data types. <br>
                     For example:
@@ -78,7 +78,7 @@
                         </code>
                     </pre>
     
-                    <p class=".fs-2 fw-light">Strings</p> 
+                    <p class="fs-3 fw-light">Strings</p> 
                     They are a sequence of characters and can be identified by the use of
                     single or double quotes:
                     <pre class="border rounded">
@@ -87,7 +87,7 @@
                             let x = 'Also a string';
                         </code>
                     </pre>
-                    <p class=".fs-2 fw-light">Numbers</p> 
+                    <p class="fs-3 fw-light">Numbers</p> 
                     Unlike other languages, Javascript does not have two different types for <code>int</code> and
                     <code>float/double</code>. Whether or not they have decimals, they are all 
                     part of <code>Number</code>.
@@ -98,10 +98,10 @@
                             let x = 1.5; // with decimal
                         </code>
                     </pre>
-                    <p class=".fs-2 fw-light">Booleans</p> 
+                    <p class="fs-3 fw-light">Booleans</p> 
                     They can either be <code>true</code> or <code>false</code>.
     
-                    <p class=".fs-2 fw-light"> <br> Arrays</p> 
+                    <p class="fs-3 fw-light"> <br> Arrays</p> 
                     Javascript arrays are indexed from zero; they are written using square brackets <code>[]</code> and
                     their elements are separated by commas <code>,</code>. <br>
                     For example:
@@ -114,11 +114,11 @@
                     <kbd>array.pop()</kbd> to remove the last element from the array ( in our example 
                     it would be <code>"etc"</code> ).
 
-                    <p class=".fs-2 fw-light"> <br> Copying Array values</p> 
+                    <p class="fs-3 fw-light"> <br> Copying Array values</p> 
                     One of the ways to copy the values from one array to another, we can use the spread
                     operator <code>...</code> like so: <kbd>array2 = [...array1]</kbd>
     
-                    <p class=".fs-2 fw-light"> <br> Objects</p> 
+                    <p class="fs-3 fw-light"> <br> Objects</p> 
                     Javascript objects are written using curly braces <code>{}</code> and are structured as 
                     key-value pairs, separated by commas. <br>
                     Example:
@@ -132,12 +132,12 @@
                         </code>
                     </pre>
     
-                    <p class=".fs-2 fw-light"><i>Undefined</i> and <i>Null</i></p>  
+                    <p class="fs-3 fw-light"><i>Undefined</i> and <i>Null</i></p>  
                     In Javascript, variables without values are set to <code>undefined</code>. <code>undefined</code>
                     and <code>null</code> are the equal in value, but different in type, as <code>null</code> is an
                     <code>object</code> and <code>undefined</code> is of type <code>undefined</code>.
     
-                    <p class=".fs-2 fw-light"> <br> Type checking and conversion</p> 
+                    <p class="fs-3 fw-light"> <br> Type checking and conversion</p> 
                     The type of any variable can be checked using the <code>typeof</code> operator, which returns
                     the the type of the given variable in a <code>string</code> format. <br>
                     Example:
@@ -160,7 +160,7 @@
                         </code>
                     </pre>
     
-                    <p class=".fs-2 fw-light">Comparing variables</p> 
+                    <p class="fs-3 fw-light">Comparing variables</p> 
                     Comparing two variables can be done with either <code>==</code> or <code>===</code>, 
                     the first one checking only if the left value is equal to the one on the right, while the 
                     second variant checks if both the value and the type is the same on both sides:
@@ -173,7 +173,7 @@
                         </code>
                     </pre>
     
-                    <p class=".fs-2 fw-light">Functions</p> 
+                    <p class="fs-3 fw-light">Functions</p> 
                     Functions in Javascript can be declared by using the <code>function</code> keyword.
                     <pre class="border rounded">
                         <code>
@@ -192,7 +192,7 @@
                             myVariableFunction();
                         </code>
                     </pre>
-                    <p class=".fs-2 fw-light">Arrow Functions</p> 
+                    <p class="fs-3 fw-light">Arrow Functions</p> 
                     <pre class="border rounded">
                         <code>
                             const myArrowFunction = ( string ) {
@@ -201,7 +201,7 @@
                             myArrowFunction( "Hello !" );
                         </code>
                     </pre>
-                    <p class=".fs-2 fw-light">Callback Functions</p> 
+                    <p class="fs-3 fw-light">Callback Functions</p> 
                     Functions can also be passed by reference to other functions in order to be used later:
                     <pre class="border rounded">
                         <code>
@@ -224,12 +224,12 @@
             </div>
             <hr>
             <div>
-                <p class=".fs-3 text fst-italic fw-bolder">Node JS</p><hr>
+                <p class="fs-2 text fst-italic fw-bolder">Node JS</p><hr>
                 <div>
-                    <p class=".fs-2 fw-light">What is <i>Node JS</i> ?</p> 
+                    <p class="fs-3 fw-light">What is <i>Node JS</i> ?</p> 
                     Node JS is a Javascript runtime for building server-side or desktop applications.
     
-                    <p class=".fs-2 fw-light"> <br> Running files with Node</p> 
+                    <p class="fs-3 fw-light"> <br> Running files with Node</p> 
                     In order to run Javascript files with node, we simply have to run <kbd>node &lt;fileName&gt;</kbd>
                     in the terminal ( Note: we need to make sure we are in the directory that contains our file )
                 </div>
