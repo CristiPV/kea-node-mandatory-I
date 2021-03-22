@@ -47,7 +47,258 @@
     <main class="container-fluid mt-3">
         <article class="container border border-2">
             <div class="mt-2">
-                
+                <p class="fs-2 text fst-italic fw-bolder">Express</p> <hr>
+                <div>
+                    <p class="fs-3 fw-light">What is <i>Express</i> ?</p>
+                    <b>Express</b> is a <b>Node JS</b> framework that provides a lot 
+                    of utilities for quickly and easily creating APIs.
+
+                    <p class="fs-3 fw-light"> <br> How to use <i>Express</i> ?</p>
+                    Provided the <b>Express</b> dependency is already installed, all we
+                    need to do now is to write: <kbd>require( "express" );</kbd> in order to
+                    import it. It is also good to store it in a variable, for later use. <br>
+                    Example:
+                    <pre class="border rounded"> 
+                        <code>
+                            const express = require( "express" );
+                        </code>
+                    </pre>
+                    
+                    Now we can call <code>express</code> to launch the application, like so: 
+                    <kbd>express();</kbd>. This can also be stored in a variable: 
+                    <pre class="border rounded"> 
+                        <code>
+                            const express = require( "express" );
+                            const app = express();
+                        </code>
+                    </pre>
+
+                    The next thing we want to do is to tell the <code>app</code> to listen
+                    on a port. We do that by using the <code>listen()</code> function.
+                    <pre class="border rounded"> 
+                        <code>
+                            app.listen( 3000 );
+                        </code>
+                    </pre>
+                    If we now try to go to <code>localhost:3000</code>, we will be greeted with
+                    the following message: <code class="font-monospace">Cannot GET /</code>. That means
+                    there is no <span class="badge bg-primary">GET</span> mapping implemented for
+                    <code>localhost:3000/</code>. <br> <br>
+
+                    Now that the <code>application</code> is up and running, we can start implementing
+                    the API. <br>
+                     We will do so by following this documentation:
+                    <div class="container-fluid">
+                        <div class="container border border-primary rounded py-1 my-1">
+                            <span class="badge bg-primary">GET</span>
+                            /plants - Retrieves the list of plants
+                        </div>
+                        
+                        <div class="container border border-primary rounded py-1 my-1">
+                            <span class="badge bg-primary">GET</span>
+                            /plants/id - Retrieves the plant with the provided id
+                        </div>
+
+                        <div class="container border border-success rounded py-1 my-1">
+                            <span class="badge bg-success">POST</span>
+                            /plants - Creates a new plant entry
+                        </div>
+
+                        <div class="container border border-warning rounded py-1 my-1">
+                            <span class="badge bg-warning">PATCH</span>
+                            /plants/id - Updates a plant with the given id
+                        </div>
+
+                        <div class="container border border-danger rounded py-1 my-1">
+                            <span class="badge bg-danger">DELETE</span>
+                            /plants/id - Deletes a plant entry with the given id
+                        </div>
+                    </div>
+                    <p class="fs-4 fw-light"> <br> <span class="badge bg-primary">GET</span> /plants </p>
+
+                    <b>Express</b> provides a set of handy functions in order to map 
+                    HTTP request methods. For implementing our first <span class="badge bg-primary">GET</span> 
+                    mapping, we will make use of the <kbd>app.get()</kbd> function, like so:
+                    <pre class="border rounded"> 
+                        <code>
+                            // The first argument that we pass is the path we want to make the mapping for
+                            // The second argument is a callback function in which we are sending the plants.
+                            app.get( "/plants", ( req, res ) => {
+                                res.send( plants );
+                            } );
+                        </code>
+                    </pre>
+                    Before we can actually use this code, we should define what <code>plants</code> is. While
+                    it could be used as an variable filled with data from a database, we are going to make an
+                    <code>array</code> in which we will hard-code some simple plant objects for the purposes 
+                    of testing our code.
+                    <pre class="border rounded"> 
+                        <code>
+                            let plants = [
+                                {
+                                    "id": 1,
+                                    "name": "Cephalotus follicularis"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "Sarracenia purpurea"
+                                }
+                            ];
+                        </code>
+                    </pre>
+                    If we are now accessing <code>localhost:3000/plants</code>, we will get the following
+                    output: <code>[{"id":1,"name":"Cephalotus follicularis"},{"id":2,"name":"Sarracenia purpurea"}]</code> <br> <br>
+
+                    <p class="fs-4 fw-light"> <br> <span class="badge bg-primary">GET</span> /plants/id </p>
+                    Implementing the next mapping will be a little bit more difficult, as we have to make use
+                    of <code>path variables</code> in order to extract the id of the plant we want to retrieve
+                    from the URL. <br>
+                    <pre class="border rounded"> 
+                        <code>
+                            // We mark a part of a path as a path variable by adding ':' before it
+                            // We can then take these variables in req.params
+                            app.get( "/plants/:id", ( req, res ) => {
+                                // Retrieving the id from the URL
+                                const id = parseInt( req.params.id );
+                                
+                                // Looking for the plant with the given id
+                                const foundPlant = plants.find( ( plant ) => {
+                                    return plant.id === id;
+                                } );
+                            
+                                // If no plant has been found, we send a message saying that
+                                const response = foundPlant ? foundPlant : {
+                                    exception: "No carnivorous plant with the given id was found"
+                                };
+                            
+                                res.send( response );
+                            } );
+                        </code>
+                    </pre>
+
+                    <p class="fs-4 fw-light"> <br> <span class="badge bg-success">POST</span> /plants </p>
+                    Because we are implementing a <b>REST API</b>, the information that we are working with
+                    is transferred the <b>JSON</b> format. In the previous examples, we only sent data; now
+                    we will receive <b>JSON</b> data that we now need to parse, however, <b>Javascript</b> doesn't
+                    know how to do that by default. Thankfully, <b>Express</b> comes with a <b>JSON</b> parser
+                    that we can use. We can achieve it like this: <kbd>app.use( express.json() ); </kbd> <br> <br>
+
+                    Now we should be ready to implement the <span class="badge bg-success">POST</span>
+                    mapping which will take care of getting the <b>JSON</b> data that it receives and
+                    adding it as a new element in our <code>plants</code> array.
+                    <pre class="border rounded"> 
+                        <code>
+                            let ID = plants.length;
+                            app.post( "/plants", ( req, res ) => {
+                                // We are creating a new plant from the data received in req.body
+                                const newPlant = req.body;
+
+                                // Regardless of what id this plant had ( if it had any )
+                                // we are overwriting it just as a database would with the
+                                // auto-increment constraint
+                                newPlant.id = ++ID;
+
+                                plants.push( newPlant );
+
+                                // We are now sending back the plant that actually got saved in the array
+                                res.send( newPlant );
+                            } );
+                        </code>
+                    </pre>
+                    
+                    <p class="fs-4 fw-light"> <br> <span class="badge bg-warning">PATCH</span> /plants/id </p>
+                    The purpose of the <span class="badge bg-warning">PATCH</span> mapping is to
+                    be able to alter the data of an entry with the id we provide. <br>
+                    This would be one way of implementing it:
+                    <pre class="border rounded"> 
+                        <code>
+                            app.patch( "/plants/:id", ( req, res ) => {
+                                const id = parseInt( req.params.id );
+                                let hasUpdated = false
+                            
+                                plants = plants.map( plant => { 
+                                    if ( plant.id === id ) {
+                                        hasUpdated = true;
+
+                                        // Once we find the plant, we are returning
+                                        // its original content, overwriting it with 
+                                        // the body that we receive, while making sure
+                                        // the id stays the same
+                                        return { ...plant, ...req.body, id: plant.id };
+                                    }
+                                    return plant;
+                                } );
+                            
+                                res.send( { hasUpdated: hasUpdated } );
+                            } );
+                        </code>
+                    </pre>
+
+                    <p class="fs-4 fw-light"> <br> <span class="badge bg-danger">DELETE</span> /plants/id </p>
+                    This <span class="badge bg-danger">DELETE</span> mapping is meant to remove an entry at
+                    the id we provide it.
+                    <pre class="border rounded"> 
+                        <code>
+                            app.delete( "/plants/:id", ( req, res ) => {
+                                // Getting the id
+                                const id = parseInt( req.params.id );
+                            
+                                // Removing the plant by filtering it out based on the id
+                                plants = plants.filter( plant => plant.id !== id );
+                            
+                                res.send( { } );
+                            } );
+                        </code>
+                    </pre>
+
+                    <hr> <p class="fs-3 fw-light">Extras</p>
+
+                    We can add some error checking in our <code>app.listen()</code> function
+                    by providing it a callback function, similar to this: 
+                    <pre class="border rounded"> 
+                        <code>
+                            app.listen( 3000, ( error ) => {
+                                // We print the error, if there is any
+                                if ( error ) {
+                                    console.log( error );
+                                }
+
+                                // We display the port we are running the server on, in case of no errors
+                                console.log( "Server running on port: ", 3000 );
+                            } );
+                        </code>
+                    </pre>
+
+                    <p class="fs-3 fw-light">Serving files with <i>Express</i> </p>
+
+                    We can serve <b>HTML</b> files in <b>Express</b> by using <kbd>res.sendFile()</kbd>
+                    function. In order to provide this function the path to the file we want to serve,
+                    independent of the OS or the folder we are running the app from, we can use <code>__dirname</code>,
+                    like so: 
+                    <pre class="border rounded"> 
+                        <code>
+                            app.get( "/", ( req, res ) => {
+                                res.sendFile( __dirname + "/public/index.html" );
+                            } );
+                        </code>
+                    </pre>
+
+                    There may be instances where the <b>HTML</b> file we are trying to serve is referring to a
+                    <code>stylesheet</code> or a <code>javascript</code> file.
+                    <pre class="border rounded"> 
+                        <code>
+                            &lt;link rel="stylesheet" href="style.css"&gt;
+                            &lt;script src="./script.js"&gt;&lt;/script&gt;
+                        </code>
+                    </pre>
+                    In this case, we may want to tell <b>Express</b> to statically serve the files from our
+                    public folder as they are requested:
+                    <pre class="border rounded"> 
+                        <code>
+                            app.use( express.static( "public" ) );
+                        </code>
+                    </pre>
+                </div>
             </div>
         </article>
     </main>
