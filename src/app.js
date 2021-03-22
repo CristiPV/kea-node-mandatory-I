@@ -22,6 +22,10 @@ app.get( "/npm", ( req, res ) => {
     res.sendFile( __dirname + "/public/npm/npm.html" );
 } );
 
+app.get( "/express", ( req, res ) => {
+    res.sendFile( __dirname + "/public/express/express.html" );
+} );
+
 app.listen( PORT, ( error ) => {
     if ( error ) {
         console.log( error );
