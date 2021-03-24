@@ -1,0 +1,8 @@
+GET /             - returns the main/home page
+GET /home         - redirects to '/'
+
+GET /javascript   - returns the javascript documentation page
+
+GET /npm          - returns the npm documentation page
+
+GET /express      - returns the express documentation page
